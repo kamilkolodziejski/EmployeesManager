@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EmployeesManager.Infrastructure.XmlDataStore
 {
-    public interface IEmployeesXmlStore : IDataStore
+    public interface IEmployeesStore : IDataStore
     {
         ISet<Employee> Employees { get; }
 

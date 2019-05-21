@@ -8,9 +8,9 @@ namespace EmployeesManager.Infrastructure.Repositories
 {
     public class XmlEmployeeRepository : IEmployeeRepository
     {
-        private readonly IEmployeesXmlStore _store;
+        private readonly IEmployeesStore _store;
 
-        public XmlEmployeeRepository(IEmployeesXmlStore store)
+        public XmlEmployeeRepository(IEmployeesStore store)
         {
             _store = store;
         }

@@ -39,7 +39,7 @@ namespace EmployeesManager.Web
 
             services.AddScoped<IEmployeeRepository, XmlEmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddSingleton<IEmployeesXmlStore, EmployeeStore>();
+            services.AddSingleton<IEmployeesStore, EmployeeXmlStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,32 +7,13 @@ using System.Xml.Serialization;
 
 namespace EmployeesManager.Infrastructure.XmlDataStore
 {
-    public class EmployeeStore : IEmployeesXmlStore
+    public class EmployeeXmlStore : GenerociXmlStore<Employee>, IEmployeesStore
     {
-        ISet<Employee> Employees { get; }
-        private readonly string _path = "Employees.xml";
+        public ISet<Employee> Employees => base.store;
 
-        public EmployeeStore()
+        public EmployeeXmlStore() : base("D:\\EmployeeDb.xml")
         {
-            if (File.Exists(_path))
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(HashSet<Employee>));
-                FileStream fileStream = new FileStream(_path, FileMode.OpenOrCreate);
-                Employees = (HashSet<Employee>)xmlSerializer.Deserialize(fileStream);
-            }
-            else
-            {
-                Employees = new HashSet<Employee>();
-            }
-        }
-        ISet<Employee> IEmployeesXmlStore.Employees => Employees;
-
-        public void Save()
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(HashSet<Employee>));
-            TextWriter streamWriter = new StreamWriter(_path);
-            xmlSerializer.Serialize(streamWriter, Employees);
-            streamWriter.Close();
+            Load();
         }
     }
 }
