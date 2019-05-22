@@ -5,6 +5,7 @@ using EmployeesManager.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace EmployeesManager.Infrastructure.Service
         {
             var employees = await _employeeRepository.BrowseAsync();
             var employeesDTO = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDTO>>(employees);
-            return await Task.FromResult(employeesDTO);
+            return await Task.FromResult(employeesDTO.ToList());
         }
 
         public async Task DeleteEmployeeAsync(Guid id)

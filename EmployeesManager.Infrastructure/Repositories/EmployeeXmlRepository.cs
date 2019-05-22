@@ -9,7 +9,7 @@ namespace EmployeesManager.Infrastructure.Repositories
 {
     public class EmployeeXmlRepository : GenericXmlRepository<Employee>, IEmployeeRepository
     {
-        public EmployeeXmlRepository(string path) : base(path)
+        public EmployeeXmlRepository() : base("EmployeesDb.xml")
         {
         }
 
@@ -21,7 +21,7 @@ namespace EmployeesManager.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Employee>> BrowseAsync()
-            => await Task.FromResult(_store.ToList());
+            => await Task.FromResult(_store);
 
         public async Task<Employee> GetAsync(string NIP)
             => await Task.FromResult(_store.Where(x => x.NIP == NIP).SingleOrDefault());

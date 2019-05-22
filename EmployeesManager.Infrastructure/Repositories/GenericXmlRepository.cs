@@ -14,6 +14,7 @@ namespace EmployeesManager.Infrastructure.Repositories
         public GenericXmlRepository(string path)
         {
             _path = path;
+            Load();
         }
 
         private void Load()

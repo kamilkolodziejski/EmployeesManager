@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using EmployeesManager.Core.Repositories;
 using EmployeesManager.Infrastructure.Mappers;
 using EmployeesManager.Infrastructure.Repositories;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeesManager.Web
 {

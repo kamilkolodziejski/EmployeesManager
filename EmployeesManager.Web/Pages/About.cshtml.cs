@@ -19,7 +19,7 @@ namespace EmployeesManager.Web.Pages
         public void OnGet()
         {
             Message = "Your application description page.";
-            _employeeService.AddEmployeeAsync("123", "dwadsa", "dwasdaw", "dwada", "dwasda", 54324324);
+            _employeeService.AddEmployeeAsync("5349000523", "Jan", "Kowalski", "1900-01-01", "Sprzątacz", 54324324);
         }
     }
 }
