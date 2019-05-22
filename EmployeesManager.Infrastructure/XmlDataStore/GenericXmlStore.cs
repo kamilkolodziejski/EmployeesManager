@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace EmployeesManager.Infrastructure.XmlDataStore
 {
-    public abstract class GenerociXmlStore<T> 
+    public abstract class GenerociXmlStore<T> : IDataStore
     {
         protected HashSet<T> store;
         protected readonly string _path;
@@ -15,9 +15,10 @@ namespace EmployeesManager.Infrastructure.XmlDataStore
         public GenerociXmlStore(string path)
         {
             _path = path;
+            Load();
         }
 
-        public void Load()
+        private void Load()
         {
             if (File.Exists(_path))
             {

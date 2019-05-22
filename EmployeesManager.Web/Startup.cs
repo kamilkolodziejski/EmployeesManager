@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using EmployeesManager.Core.Repositories;
+using EmployeesManager.Infrastructure.Mappers;
 using EmployeesManager.Infrastructure.Repositories;
 using EmployeesManager.Infrastructure.Service;
 using EmployeesManager.Infrastructure.XmlDataStore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,11 +32,14 @@ namespace EmployeesManager.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton(AutoMapperConfig.Initalize());
 
             services.AddScoped<IEmployeeRepository, XmlEmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddSingleton<IEmployeesStore, EmployeeXmlStore>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

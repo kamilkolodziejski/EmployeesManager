@@ -16,8 +16,9 @@ namespace EmployeesManager.Web.Pages
         }
         public string Message { get; set; }
 
-        public void OnGet()
+        public async void OnGet()
         {
+            var employees = await _employeeService.BrowseAsync();
             Message = "Your contact page.";
         }
     }

@@ -13,7 +13,6 @@ namespace EmployeesManager.Infrastructure.XmlDataStore
 
         public EmployeeXmlStore() : base("D:\\EmployeeDb.xml")
         {
-            Load();
         }
     }
 }
