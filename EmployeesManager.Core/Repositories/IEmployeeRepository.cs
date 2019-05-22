@@ -1,10 +1,10 @@
-﻿using EmployeesManager.Core.Domain;
+﻿using EmployeesManager.Infrastructure.XmlStore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EmployeesManager.Core.Repositories
+namespace EmployeesManager.Infrastructure.XmlStore
 {
     public interface IEmployeeRepository
     {

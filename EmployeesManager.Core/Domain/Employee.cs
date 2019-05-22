@@ -1,11 +1,11 @@
-﻿using EmployeesManager.Core.Extensions;
+﻿using EmployeesManager.Infrastructure.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace EmployeesManager.Core.Domain
+namespace EmployeesManager.Infrastructure.XmlStore
 {
     public class Employee
     {

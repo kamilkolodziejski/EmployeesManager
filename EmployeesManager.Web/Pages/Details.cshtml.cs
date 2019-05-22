@@ -11,20 +11,31 @@ using EmployeesManager.Infrastructure.Service;
 
 namespace EmployeesManager.Web.Pages
 {
-    public class IndexModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly IEmployeeService _employeeService;
 
-        public IndexModel(IEmployeeService employeeService)
+        public DetailsModel(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
 
-        public IEnumerable<EmployeeDto> EmployeeDto { get;set; }
+        public EmployeeDto EmployeeDto { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            EmployeeDto = await _employeeService.BrowseAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            EmployeeDto = await _employeeService.GetByIdAsync(id.Value);
+
+            if (EmployeeDto == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }

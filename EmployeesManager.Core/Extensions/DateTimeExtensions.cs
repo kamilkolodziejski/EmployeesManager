@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EmployeesManager.Core.Extensions
+namespace EmployeesManager.Infrastructure.Extensions
 {
     public static class DateTimeExtensions
     {

@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using EmployeesManager.Core.Repositories;
+﻿using EmployeesManager.Infrastructure.XmlStore;
 using EmployeesManager.Infrastructure.Mappers;
-using EmployeesManager.Infrastructure.Repositories;
 using EmployeesManager.Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using EmployeesManager.Web.Models;
 
 namespace EmployeesManager.Web
 {
@@ -39,6 +38,9 @@ namespace EmployeesManager.Web
             //services.AddSingleton<IEmployeesStore, EmployeeXmlStore>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<EmployeesManagerWebContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("EmployeesManagerWebContext")));
 
         }
 

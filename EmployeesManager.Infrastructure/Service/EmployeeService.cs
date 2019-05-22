@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using EmployeesManager.Core.Domain;
-using EmployeesManager.Core.Repositories;
-using EmployeesManager.Infrastructure.DTO;
+using EmployeesManager.Infrastructure.XmlStore;
+using EmployeesManager.Infrastructure.Dto;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace EmployeesManager.Infrastructure.Service
@@ -22,38 +18,40 @@ namespace EmployeesManager.Infrastructure.Service
             _mapper = mapper;
         }
 
-        public async Task AddEmployeeAsync(string nip, string firstName, string lastName, string birthDate, string position, int salary)
+        public async Task AddEmployeeAsync(string nip, string firstName, string lastName, DateTime birthDate, string position, int salary)
         {
-            var employee = new Employee(Guid.NewGuid(), nip, firstName, lastName, DateTime.ParseExact(birthDate,"yyyy-MM-dd",CultureInfo.InvariantCulture), position, salary);
+            var employee = new Employee(Guid.NewGuid(), nip, firstName, lastName, birthDate, position, salary);
             await _employeeRepository.AddAsync(employee);
         }
 
-        public async Task<IEnumerable<EmployeeDTO>> BrowseAsync()
+        public async Task<IEnumerable<EmployeeDto>> BrowseAsync()
         {
             var employees = await _employeeRepository.BrowseAsync();
-            var employeesDTO = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDTO>>(employees);
-            return await Task.FromResult(employeesDTO.ToList());
+            var employeesDTO = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDto>>(employees);
+            return employeesDTO;
         }
 
         public async Task DeleteEmployeeAsync(Guid id)
             => await _employeeRepository.RemoveAsync(id);
 
-        public Task<EmployeeDTO> GetByIdAsync(Guid id)
+        public async Task<EmployeeDto> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var employee = await _employeeRepository.GetAsync(id);
+            return _mapper.Map<Employee, EmployeeDto>(employee);
         }
 
-        public Task<EmployeeDTO> GetByNIP(string nip)
+        public async Task<EmployeeDto> GetByNIP(string nip)
         {
-            throw new NotImplementedException();
+            var employee = await _employeeRepository.GetAsync(nip);
+            return _mapper.Map<Employee, EmployeeDto>(employee);
         }
 
-        public async Task UpdateEmployeeAsync(Guid id, string nip, string firstName, string lastName, string birthDate, string position, int salary)
+        public async Task UpdateEmployeeAsync(Guid id, string nip, string firstName, string lastName, DateTime birthDate, string position, int salary)
         {
             var employee = await _employeeRepository.GetAsync(id);
             employee.FirstName = firstName;
             employee.LastName = lastName;
-            employee.SetBirthDate(DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.InvariantCulture));
+            employee.SetBirthDate(birthDate);
             employee.Position = position;
             employee.SetSalary(salary);
             await _employeeRepository.UpdateAsync(employee);

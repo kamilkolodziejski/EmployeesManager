@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEmployeeXmlEntity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EmployeeXmlEntity>
+    <Id>16448afa-26d4-4293-811e-9cf82f53063f</Id>
+    <NIP>3383079055</NIP>
+    <FirstName>21312</FirstName>
+    <LastName>5343534</LastName>
+    <BirthDate>1900-01-01T00:00:00</BirthDate>
+    <Position>dawdsa</Position>
+    <Salary>321321</Salary>
+  </EmployeeXmlEntity>
+  <EmployeeXmlEntity>
+    <Id>5687b686-0d2f-43f3-8987-a26760431e1d</Id>
+    <NIP>3769872708</NIP>
+    <FirstName>Andrzej</FirstName>
+    <LastName>Wajda</LastName>
+    <BirthDate>1996-04-18T00:00:00</BirthDate>
+    <Position>Agent</Position>
+    <Salary>45567</Salary>
+  </EmployeeXmlEntity>
+</ArrayOfEmployeeXmlEntity>

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using EmployeesManager.Core.Domain;
-using EmployeesManager.Infrastructure.DTO;
+using EmployeesManager.Infrastructure.XmlStore;
+using EmployeesManager.Infrastructure.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,9 @@ namespace EmployeesManager.Infrastructure.Mappers
         public static IMapper Initalize()
             => new MapperConfiguration(cfg =>
            {
-               cfg.CreateMap<Employee, EmployeeDTO>();
+               cfg.CreateMap<Employee, EmployeeDto>();
+               cfg.CreateMap<Employee, EmployeeXmlEntity>();
+               cfg.CreateMap<EmployeeXmlEntity, Employee>();
 
            }).CreateMapper();
     }

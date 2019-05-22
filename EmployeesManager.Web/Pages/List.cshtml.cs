@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using EmployeesManager.Infrastructure.DTO;
+using EmployeesManager.Infrastructure.Dto;
 using EmployeesManager.Infrastructure.Service;
 
 namespace EmployeesManager.Web.Pages
@@ -15,7 +15,7 @@ namespace EmployeesManager.Web.Pages
             _employeeService = employeeService;
         }
 
-        public IEnumerable<EmployeeDTO> Employees { get;set; }
+        public IEnumerable<EmployeeDto> Employees { get;set; }
 
         public async Task OnGetAsync()
         {

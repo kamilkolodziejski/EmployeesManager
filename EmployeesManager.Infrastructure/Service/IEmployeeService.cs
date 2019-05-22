@@ -1,4 +1,4 @@
-﻿using EmployeesManager.Infrastructure.DTO;
+﻿using EmployeesManager.Infrastructure.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +8,11 @@ namespace EmployeesManager.Infrastructure.Service
 {
     public interface IEmployeeService
     {
-        Task<EmployeeDTO> GetByIdAsync(Guid id);
-        Task<EmployeeDTO> GetByNIP(string nip);
-        Task<IEnumerable<EmployeeDTO>> BrowseAsync();
-        Task AddEmployeeAsync(string nip, string firstName, string lastName, string birthDate, string position, int salary);
-        Task UpdateEmployeeAsync(Guid id, string nip, string firstName, string lastName, string birthDate, string position, int salary);
+        Task<EmployeeDto> GetByIdAsync(Guid id);
+        Task<EmployeeDto> GetByNIP(string nip);
+        Task<IEnumerable<EmployeeDto>> BrowseAsync();
+        Task AddEmployeeAsync(string nip, string firstName, string lastName, DateTime birthDate, string position, int salary);
+        Task UpdateEmployeeAsync(Guid id, string nip, string firstName, string lastName, DateTime birthDate, string position, int salary);
         Task DeleteEmployeeAsync(Guid id);
 
     }

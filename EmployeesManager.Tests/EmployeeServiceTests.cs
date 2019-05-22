@@ -1,7 +1,5 @@
 using AutoMapper;
-using EmployeesManager.Core.Domain;
-using EmployeesManager.Core.Repositories;
-using EmployeesManager.Infrastructure.Mappers;
+using EmployeesManager.Infrastructure.XmlStore;
 using EmployeesManager.Infrastructure.Service;
 using Moq;
 using System;
@@ -25,8 +23,8 @@ namespace EmployeesManager.Tests
             var employeeService = new EmployeeService(employeeRepositoryMock.Object, mapperMock.Object);
             //await employeeService.AddEmployeeAsync("213", "asad", "dsad", "1999-09-09", "Dwads", 432);
 
-            var exc = Assert.ThrowsAsync<ArgumentException>(() => employeeService.AddEmployeeAsync("213", "asad", "dsad", "1999-09-09", "Dwads", 432));
-            Assert.Equal("NIP jest niepoprawny", exc.Result.Message);
+            var exc = await Assert.ThrowsAsync<ArgumentException>(() => employeeService.AddEmployeeAsync("213", "asad", "dsad", new DateTime(1985, 3, 1), "Dwads", 432));
+            Assert.Equal("NIP jest niepoprawny", exc.Message);
         }
 
         [Fact]
@@ -38,7 +36,7 @@ namespace EmployeesManager.Tests
             var mapperMock = new Mock<IMapper>();
 
             var employeeService = new EmployeeService(employeeRepositoryMock.Object, mapperMock.Object);
-            await employeeService.AddEmployeeAsync("5234736750", "adam", "nowak", "1993-01-01", "sprz¹taczka", 25000);
+            await employeeService.AddEmployeeAsync("5234736750", "adam", "nowak", new DateTime(1975,3,11), "sprz¹taczka", 25000);
 
             employeeRepositoryMock.Verify(x => x.AddAsync(It.IsAny<Employee>()), Times.Once);
         }
@@ -53,7 +51,7 @@ namespace EmployeesManager.Tests
                                         .ReturnsAsync(employee);
 
             var employeeService = new EmployeeService(employeeRepositoryMock.Object, mapperMock.Object);
-            await employeeService.UpdateEmployeeAsync(Guid.NewGuid(),"dsadw","dwads","dwafa","1990-10-10","dwads",23421);
+            await employeeService.UpdateEmployeeAsync(Guid.NewGuid(),"dsadw","dwads","dwafa", new DateTime(1979, 9, 22), "dwads",23421);
 
             employeeRepositoryMock.Verify(x => x.UpdateAsync(It.IsAny<Employee>()), Times.Once);
         }
