@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EmployeesManager.Core.Model;
+using EmployeesManager.Core.Domain;
 using EmployeesManager.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;

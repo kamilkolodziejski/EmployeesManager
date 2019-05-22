@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EmployeesManager.Core.Model;
+using EmployeesManager.Core.Domain;
 using EmployeesManager.Core.Repositories;
 using EmployeesManager.Infrastructure.DTO;
 using System;
@@ -52,9 +52,9 @@ namespace EmployeesManager.Infrastructure.Service
             var employee = await _employeeRepository.GetAsync(id);
             employee.FirstName = firstName;
             employee.LastName = lastName;
-            employee.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            employee.SetBirthDate(DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.InvariantCulture));
             employee.Position = position;
-            employee.Salary = salary;
+            employee.SetSalary(salary);
             await _employeeRepository.UpdateAsync(employee);
         }
     }

@@ -1,4 +1,4 @@
-﻿using EmployeesManager.Core.Model;
+﻿using EmployeesManager.Core.Domain;
 using EmployeesManager.Core.Repositories;
 using System;
 using System.Collections.Generic;
