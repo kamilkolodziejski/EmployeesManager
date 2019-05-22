@@ -3,7 +3,6 @@ using EmployeesManager.Core.Repositories;
 using EmployeesManager.Infrastructure.Mappers;
 using EmployeesManager.Infrastructure.Repositories;
 using EmployeesManager.Infrastructure.Service;
-using EmployeesManager.Infrastructure.XmlDataStore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,9 +33,9 @@ namespace EmployeesManager.Web
 
             services.AddSingleton(AutoMapperConfig.Initalize());
 
-            services.AddScoped<IEmployeeRepository, XmlEmployeeRepository>();
+            services.AddSingleton<IEmployeeRepository, EmployeeXmlRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddSingleton<IEmployeesStore, EmployeeXmlStore>();
+            //services.AddSingleton<IEmployeesStore, EmployeeXmlStore>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
