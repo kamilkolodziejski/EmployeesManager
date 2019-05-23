@@ -52,7 +52,7 @@ namespace EmployeesManager.Web.Pages
                 await _employeeService.DeleteEmployeeAsync(EmployeeDto.Id);
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Employees");
         }
     }
 }

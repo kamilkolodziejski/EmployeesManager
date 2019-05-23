@@ -1,4 +1,4 @@
-﻿using EmployeesManager.Infrastructure.Extensions;
+﻿using EmployeesManager.Infrastructure.IoC;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

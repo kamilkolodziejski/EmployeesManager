@@ -36,7 +36,7 @@ namespace EmployeesManager.Web.Pages
 
             await _employeeService.AddEmployeeAsync(EmployeeDto.NIP, EmployeeDto.FirstName, EmployeeDto.LastName,
                                                 EmployeeDto.BirthDate, EmployeeDto.Position, EmployeeDto.Salary);
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Employees");
         }
     }
 }

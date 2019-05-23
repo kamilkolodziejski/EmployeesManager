@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using EmployeesManager.Infrastructure.Settings;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,11 @@ namespace EmployeesManager.Infrastructure.XmlStore
     public class EmployeeXmlRepository : GenericXmlStore<EmployeeXmlEntity>, IEmployeeRepository
     {
         private readonly IMapper _mapper;
-        public EmployeeXmlRepository(IMapper mapper) : base("EmployeesDb.xml")
+        private readonly IOptions<XmlRepositorySettings> _settings;
+        public EmployeeXmlRepository(IMapper mapper, IOptions<XmlRepositorySettings> settings) : base(settings.Value.EmployeeXmlPath)
         {
             _mapper = mapper;
+            _settings = settings;
         }
 
         public async Task AddAsync(Employee employee)
