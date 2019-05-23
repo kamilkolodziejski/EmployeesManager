@@ -73,7 +73,7 @@ $.extend( $.fn, {
 					// Insert a hidden input as a replacement for the missing submit button
 					// The hidden input is inserted in two cases:
 					//   - A user defined a `submitHandler`
-					//   - There was a pending request due to `remote` method and `stopRequest()`
+					//   - There was a pending EmployeeDto due to `remote` method and `stopEmployeeDto()`
 					//     was called to submit the form in case it's valid
 					if ( validator.submitButton && ( validator.settings.submitHandler || validator.formSubmitted ) ) {
 						hidden = $( "<input type='hidden'/>" )
@@ -103,7 +103,7 @@ $.extend( $.fn, {
 					return handle();
 				}
 				if ( validator.form() ) {
-					if ( validator.pendingRequest ) {
+					if ( validator.pendingEmployeeDto ) {
 						validator.formSubmitted = true;
 						return false;
 					}
@@ -388,7 +388,7 @@ $.extend( $.validator, {
 			this.containers = $( this.settings.errorContainer ).add( this.settings.errorLabelContainer );
 			this.submitted = {};
 			this.valueCache = {};
-			this.pendingRequest = 0;
+			this.pendingEmployeeDto = 0;
 			this.pending = {};
 			this.invalid = {};
 			this.reset();
@@ -1088,24 +1088,24 @@ $.extend( $.validator, {
 			return !$.validator.methods.required.call( this, val, element ) && "dependency-mismatch";
 		},
 
-		startRequest: function( element ) {
+		startEmployeeDto: function( element ) {
 			if ( !this.pending[ element.name ] ) {
-				this.pendingRequest++;
+				this.pendingEmployeeDto++;
 				$( element ).addClass( this.settings.pendingClass );
 				this.pending[ element.name ] = true;
 			}
 		},
 
-		stopRequest: function( element, valid ) {
-			this.pendingRequest--;
+		stopEmployeeDto: function( element, valid ) {
+			this.pendingEmployeeDto--;
 
-			// Sometimes synchronization fails, make sure pendingRequest is never < 0
-			if ( this.pendingRequest < 0 ) {
-				this.pendingRequest = 0;
+			// Sometimes synchronization fails, make sure pendingEmployeeDto is never < 0
+			if ( this.pendingEmployeeDto < 0 ) {
+				this.pendingEmployeeDto = 0;
 			}
 			delete this.pending[ element.name ];
 			$( element ).removeClass( this.settings.pendingClass );
-			if ( valid && this.pendingRequest === 0 && this.formSubmitted && this.form() ) {
+			if ( valid && this.pendingEmployeeDto === 0 && this.formSubmitted && this.form() ) {
 				$( this.currentForm ).submit();
 
 				// Remove the hidden input that was used as a replacement for the
@@ -1117,7 +1117,7 @@ $.extend( $.validator, {
 				}
 
 				this.formSubmitted = false;
-			} else if ( !valid && this.pendingRequest === 0 && this.formSubmitted ) {
+			} else if ( !valid && this.pendingEmployeeDto === 0 && this.formSubmitted ) {
 				$( this.currentForm ).triggerHandler( "invalid-form", [ this ] );
 				this.formSubmitted = false;
 			}
@@ -1523,7 +1523,7 @@ $.extend( $.validator, {
 
 			previous.old = optionDataString;
 			validator = this;
-			this.startRequest( element );
+			this.startEmployeeDto( element );
 			data = {};
 			data[ element.name ] = value;
 			$.ajax( $.extend( true, {
@@ -1553,7 +1553,7 @@ $.extend( $.validator, {
 						validator.showErrors( errors );
 					}
 					previous.valid = valid;
-					validator.stopRequest( element, valid );
+					validator.stopEmployeeDto( element, valid );
 				}
 			}, param ) );
 			return "pending";
@@ -1564,9 +1564,9 @@ $.extend( $.validator, {
 
 // Ajax mode: abort
 // usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
-// if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
+// if mode:"abort" is used, the previous EmployeeDto on that port (port can be undefined) is aborted via XMLHttpEmployeeDto.abort()
 
-var pendingRequests = {},
+var pendingEmployeeDtos = {},
 	ajax;
 
 // Use a prefilter if available (1.5+)
@@ -1574,10 +1574,10 @@ if ( $.ajaxPrefilter ) {
 	$.ajaxPrefilter( function( settings, _, xhr ) {
 		var port = settings.port;
 		if ( settings.mode === "abort" ) {
-			if ( pendingRequests[ port ] ) {
-				pendingRequests[ port ].abort();
+			if ( pendingEmployeeDtos[ port ] ) {
+				pendingEmployeeDtos[ port ].abort();
 			}
-			pendingRequests[ port ] = xhr;
+			pendingEmployeeDtos[ port ] = xhr;
 		}
 	} );
 } else {
@@ -1588,11 +1588,11 @@ if ( $.ajaxPrefilter ) {
 		var mode = ( "mode" in settings ? settings : $.ajaxSettings ).mode,
 			port = ( "port" in settings ? settings : $.ajaxSettings ).port;
 		if ( mode === "abort" ) {
-			if ( pendingRequests[ port ] ) {
-				pendingRequests[ port ].abort();
+			if ( pendingEmployeeDtos[ port ] ) {
+				pendingEmployeeDtos[ port ].abort();
 			}
-			pendingRequests[ port ] = ajax.apply( this, arguments );
-			return pendingRequests[ port ];
+			pendingEmployeeDtos[ port ] = ajax.apply( this, arguments );
+			return pendingEmployeeDtos[ port ];
 		}
 		return ajax.apply( this, arguments );
 	};

@@ -11,8 +11,8 @@ namespace EmployeesManager.Infrastructure.Service
         Task<EmployeeDto> GetByIdAsync(Guid id);
         Task<EmployeeDto> GetByNIP(string nip);
         Task<IEnumerable<EmployeeDto>> BrowseAsync();
-        Task AddEmployeeAsync(string nip, string firstName, string lastName, DateTime birthDate, string position, int salary);
-        Task UpdateEmployeeAsync(Guid id, string nip, string firstName, string lastName, DateTime birthDate, string position, int salary);
+        Task AddEmployeeAsync(EmployeeDto EmployeeDto);
+        Task UpdateEmployeeAsync(EmployeeDto EmployeeDto);
         Task DeleteEmployeeAsync(Guid id);
 
     }

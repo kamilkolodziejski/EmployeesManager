@@ -11,13 +11,13 @@ namespace EmployeesManager.Web.Pages
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class ErrorModel : PageModel
     {
-        public string RequestId { get; set; }
+        public string EmployeeDtoId { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowEmployeeDtoId => !string.IsNullOrEmpty(EmployeeDtoId);
 
         public void OnGet()
         {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            EmployeeDtoId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }
 }

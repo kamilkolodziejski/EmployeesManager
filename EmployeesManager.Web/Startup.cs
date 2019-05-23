@@ -1,10 +1,13 @@
 ﻿using EmployeesManager.Infrastructure.IoC;
+using EmployeesManager.Infrastructure.Service;
+using EmployeesManager.Infrastructure.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace EmployeesManager.Web
 {
@@ -29,7 +32,7 @@ namespace EmployeesManager.Web
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                // This lambda determines whether user consent for non-essential cookies is needed for a given EmployeeDto.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -44,8 +47,8 @@ namespace EmployeesManager.Web
                     });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP EmployeeDto pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDataInitializer dataInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -56,6 +59,13 @@ namespace EmployeesManager.Web
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            var settings = app.ApplicationServices.GetService<IOptions<XmlRepositorySettings>>();
+            if(settings.Value.SeedData)
+            {
+                dataInitializer.SeedData();
+            }
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

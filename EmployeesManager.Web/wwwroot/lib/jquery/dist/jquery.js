@@ -6329,7 +6329,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 		}
 	}
 
-	// Account for positive content-box scroll gutter when requested by providing computedVal
+	// Account for positive content-box scroll gutter when EmployeeDtoed by providing computedVal
 	if ( !isBorderBox && computedVal >= 0 ) {
 
 		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
@@ -6393,7 +6393,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 			valueIsBorderBox,
 			styles,
 
-			// Provide the current computed size to request scroll gutter calculation (gh-3589)
+			// Provide the current computed size to EmployeeDto scroll gutter calculation (gh-3589)
 			val
 		)
 	) + "px";
@@ -6804,8 +6804,8 @@ var
 
 function schedule() {
 	if ( inProgress ) {
-		if ( document.hidden === false && window.requestAnimationFrame ) {
-			window.requestAnimationFrame( schedule );
+		if ( document.hidden === false && window.EmployeeDtoAnimationFrame ) {
+			window.EmployeeDtoAnimationFrame( schedule );
 		} else {
 			window.setTimeout( schedule, jQuery.fx.interval );
 		}
@@ -8582,7 +8582,7 @@ function addToPrefiltersOrTransports( structure ) {
 			// For each dataType in the dataTypeExpression
 			while ( ( dataType = dataTypes[ i++ ] ) ) {
 
-				// Prepend if requested
+				// Prepend if EmployeeDtoed
 				if ( dataType[ 0 ] === "+" ) {
 					dataType = dataType.slice( 1 ) || "*";
 					( structure[ dataType ] = structure[ dataType ] || [] ).unshift( func );
@@ -8642,7 +8642,7 @@ function ajaxExtend( target, src ) {
 	return target;
 }
 
-/* Handles responses to an ajax request:
+/* Handles responses to an ajax EmployeeDto:
  * - finds the right dataType (mediates between content-type and expected dataType)
  * - returns the corresponding response
  */
@@ -8701,7 +8701,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 	}
 }
 
-/* Chain conversions given the request and the original response
+/* Chain conversions given the EmployeeDto and the original response
  * Also sets the responseXXX fields on the jqXHR instance
  */
 function ajaxConvert( s, response, jqXHR, isSuccess ) {
@@ -8805,7 +8805,7 @@ jQuery.extend( {
 	// Counter for holding the number of active queries
 	active: 0,
 
-	// Last-Modified header cache for next request
+	// Last-Modified header cache for next EmployeeDto
 	lastModified: {},
 	etag: {},
 
@@ -8920,7 +8920,7 @@ jQuery.extend( {
 			// Url cleanup var
 			urlAnchor,
 
-			// Request state (becomes false upon send and true upon completion)
+			// EmployeeDto state (becomes false upon send and true upon completion)
 			completed,
 
 			// To know if global events are to be dispatched
@@ -8952,8 +8952,8 @@ jQuery.extend( {
 			statusCode = s.statusCode || {},
 
 			// Headers (they are sent all at once)
-			requestHeaders = {},
-			requestHeadersNames = {},
+			EmployeeDtoHeaders = {},
+			EmployeeDtoHeadersNames = {},
 
 			// Default abort message
 			strAbort = "canceled",
@@ -8983,11 +8983,11 @@ jQuery.extend( {
 				},
 
 				// Caches the header
-				setRequestHeader: function( name, value ) {
+				setEmployeeDtoHeader: function( name, value ) {
 					if ( completed == null ) {
-						name = requestHeadersNames[ name.toLowerCase() ] =
-							requestHeadersNames[ name.toLowerCase() ] || name;
-						requestHeaders[ name ] = value;
+						name = EmployeeDtoHeadersNames[ name.toLowerCase() ] =
+							EmployeeDtoHeadersNames[ name.toLowerCase() ] || name;
+						EmployeeDtoHeaders[ name ] = value;
 					}
 					return this;
 				},
@@ -9019,7 +9019,7 @@ jQuery.extend( {
 					return this;
 				},
 
-				// Cancel the request
+				// Cancel the EmployeeDto
 				abort: function( statusText ) {
 					var finalText = statusText || strAbort;
 					if ( transport ) {
@@ -9045,7 +9045,7 @@ jQuery.extend( {
 		// Extract dataTypes list
 		s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
 
-		// A cross-domain request is in order when the origin doesn't match the current origin.
+		// A cross-domain EmployeeDto is in order when the origin doesn't match the current origin.
 		if ( s.crossDomain == null ) {
 			urlAnchor = document.createElement( "a" );
 
@@ -9076,7 +9076,7 @@ jQuery.extend( {
 		// Apply prefilters
 		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
 
-		// If request was aborted inside a prefilter, stop there
+		// If EmployeeDto was aborted inside a prefilter, stop there
 		if ( completed ) {
 			return jqXHR;
 		}
@@ -9085,7 +9085,7 @@ jQuery.extend( {
 		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
 		fireGlobals = jQuery.event && s.global;
 
-		// Watch for a new set of requests
+		// Watch for a new set of EmployeeDtos
 		if ( fireGlobals && jQuery.active++ === 0 ) {
 			jQuery.event.trigger( "ajaxStart" );
 		}
@@ -9093,7 +9093,7 @@ jQuery.extend( {
 		// Uppercase the type
 		s.type = s.type.toUpperCase();
 
-		// Determine if request has content
+		// Determine if EmployeeDto has content
 		s.hasContent = !rnoContent.test( s.type );
 
 		// Save the URL in case we're toying with the If-Modified-Since
@@ -9101,7 +9101,7 @@ jQuery.extend( {
 		// Remove hash to simplify url manipulation
 		cacheURL = s.url.replace( rhash, "" );
 
-		// More options handling for requests with no content
+		// More options handling for EmployeeDtos with no content
 		if ( !s.hasContent ) {
 
 			// Remember the hash so we can put it back
@@ -9121,7 +9121,7 @@ jQuery.extend( {
 				uncached = ( rquery.test( cacheURL ) ? "&" : "?" ) + "_=" + ( nonce++ ) + uncached;
 			}
 
-			// Put hash and anti-cache on the URL that will be requested (gh-1732)
+			// Put hash and anti-cache on the URL that will be EmployeeDtoed (gh-1732)
 			s.url = cacheURL + uncached;
 
 		// Change '%20' to '+' if this is encoded form body content (gh-2658)
@@ -9133,20 +9133,20 @@ jQuery.extend( {
 		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
 		if ( s.ifModified ) {
 			if ( jQuery.lastModified[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
+				jqXHR.setEmployeeDtoHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
 			}
 			if ( jQuery.etag[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-None-Match", jQuery.etag[ cacheURL ] );
+				jqXHR.setEmployeeDtoHeader( "If-None-Match", jQuery.etag[ cacheURL ] );
 			}
 		}
 
 		// Set the correct header, if data is being sent
 		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
-			jqXHR.setRequestHeader( "Content-Type", s.contentType );
+			jqXHR.setEmployeeDtoHeader( "Content-Type", s.contentType );
 		}
 
 		// Set the Accepts header for the server, depending on the dataType
-		jqXHR.setRequestHeader(
+		jqXHR.setEmployeeDtoHeader(
 			"Accept",
 			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[ 0 ] ] ?
 				s.accepts[ s.dataTypes[ 0 ] ] +
@@ -9156,7 +9156,7 @@ jQuery.extend( {
 
 		// Check for headers option
 		for ( i in s.headers ) {
-			jqXHR.setRequestHeader( i, s.headers[ i ] );
+			jqXHR.setEmployeeDtoHeader( i, s.headers[ i ] );
 		}
 
 		// Allow custom headers/mimetypes and early abort
@@ -9189,7 +9189,7 @@ jQuery.extend( {
 				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
 			}
 
-			// If request was aborted inside ajaxSend, stop there
+			// If EmployeeDto was aborted inside ajaxSend, stop there
 			if ( completed ) {
 				return jqXHR;
 			}
@@ -9203,7 +9203,7 @@ jQuery.extend( {
 
 			try {
 				completed = false;
-				transport.send( requestHeaders, done );
+				transport.send( EmployeeDtoHeaders, done );
 			} catch ( e ) {
 
 				// Rethrow post-completion exceptions
@@ -9457,7 +9457,7 @@ jQuery.expr.pseudos.visible = function( elem ) {
 
 jQuery.ajaxSettings.xhr = function() {
 	try {
-		return new window.XMLHttpRequest();
+		return new window.XMLHttpEmployeeDto();
 	} catch ( e ) {}
 };
 
@@ -9478,7 +9478,7 @@ support.ajax = xhrSupported = !!xhrSupported;
 jQuery.ajaxTransport( function( options ) {
 	var callback, errorCallback;
 
-	// Cross domain only allowed if supported through XMLHttpRequest
+	// Cross domain only allowed if supported through XMLHttpEmployeeDto
 	if ( support.cors || xhrSupported && !options.crossDomain ) {
 		return {
 			send: function( headers, complete ) {
@@ -9505,18 +9505,18 @@ jQuery.ajaxTransport( function( options ) {
 					xhr.overrideMimeType( options.mimeType );
 				}
 
-				// X-Requested-With header
-				// For cross-domain requests, seeing as conditions for a preflight are
+				// X-EmployeeDtoed-With header
+				// For cross-domain EmployeeDtos, seeing as conditions for a preflight are
 				// akin to a jigsaw puzzle, we simply never set it to be sure.
-				// (it can always be set on a per-request basis or even using ajaxSetup)
-				// For same-domain requests, won't change header if already provided.
-				if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
-					headers[ "X-Requested-With" ] = "XMLHttpRequest";
+				// (it can always be set on a per-EmployeeDto basis or even using ajaxSetup)
+				// For same-domain EmployeeDtos, won't change header if already provided.
+				if ( !options.crossDomain && !headers[ "X-EmployeeDtoed-With" ] ) {
+					headers[ "X-EmployeeDtoed-With" ] = "XMLHttpEmployeeDto";
 				}
 
 				// Set headers
 				for ( i in headers ) {
-					xhr.setRequestHeader( i, headers[ i ] );
+					xhr.setEmployeeDtoHeader( i, headers[ i ] );
 				}
 
 				// Callback
@@ -9596,7 +9596,7 @@ jQuery.ajaxTransport( function( options ) {
 
 				try {
 
-					// Do send the request (this may raise an exception)
+					// Do send the EmployeeDto (this may raise an exception)
 					xhr.send( options.hasContent && options.data || null );
 				} catch ( e ) {
 
@@ -9656,7 +9656,7 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 // Bind script tag hack transport
 jQuery.ajaxTransport( "script", function( s ) {
 
-	// This transport only deals with cross domain requests
+	// This transport only deals with cross domain EmployeeDtos
 	if ( s.crossDomain ) {
 		var script, callback;
 		return {
@@ -9703,7 +9703,7 @@ jQuery.ajaxSetup( {
 	}
 } );
 
-// Detect, normalize options and install callbacks for jsonp requests
+// Detect, normalize options and install callbacks for jsonp EmployeeDtos
 jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 	var callbackName, overwritten, responseContainer,
@@ -9873,7 +9873,7 @@ jQuery.fn.load = function( url, params, callback ) {
 		type = "POST";
 	}
 
-	// If we have elements to modify, make the request
+	// If we have elements to modify, make the EmployeeDto
 	if ( self.length > 0 ) {
 		jQuery.ajax( {
 			url: url,
@@ -9898,7 +9898,7 @@ jQuery.fn.load = function( url, params, callback ) {
 				// Otherwise use the full result
 				responseText );
 
-		// If the request succeeds, this function gets "data", "status", "jqXHR"
+		// If the EmployeeDto succeeds, this function gets "data", "status", "jqXHR"
 		// but they are ignored because response was set above.
 		// If it fails, this function gets "jqXHR", "status", "error"
 		} ).always( callback && function( jqXHR, status ) {
@@ -10189,7 +10189,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 
 				return value === undefined ?
 
-					// Get width or height on the element, requesting but not forcing parseFloat
+					// Get width or height on the element, EmployeeDtoing but not forcing parseFloat
 					jQuery.css( elem, type, extra ) :
 
 					// Set width or height on the element

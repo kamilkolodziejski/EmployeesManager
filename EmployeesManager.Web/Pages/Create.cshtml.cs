@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using EmployeesManager.Infrastructure.Dto;
 using EmployeesManager.Infrastructure.Service;
+using EmployeesManager.Infrastructure.Dto;
 
 namespace EmployeesManager.Web.Pages
 {
@@ -34,8 +33,7 @@ namespace EmployeesManager.Web.Pages
                 return Page();
             }
 
-            await _employeeService.AddEmployeeAsync(EmployeeDto.NIP, EmployeeDto.FirstName, EmployeeDto.LastName,
-                                                EmployeeDto.BirthDate, EmployeeDto.Position, EmployeeDto.Salary);
+            await _employeeService.AddEmployeeAsync(EmployeeDto);
             return RedirectToPage("./Employees");
         }
     }

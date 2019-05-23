@@ -24,6 +24,12 @@ namespace EmployeesManager.Infrastructure.Service
             await _employeeRepository.AddAsync(employee);
         }
 
+        public async Task AddEmployeeAsync(EmployeeDto EmployeeDto)
+        {
+            var employee = new Employee(Guid.NewGuid(), EmployeeDto.NIP, EmployeeDto.FirstName, EmployeeDto.LastName, EmployeeDto.BirthDate, EmployeeDto.Position, EmployeeDto.Salary);
+            await _employeeRepository.AddAsync(employee);
+        }
+
         public async Task<IEnumerable<EmployeeDto>> BrowseAsync()
         {
             var employees = await _employeeRepository.BrowseAsync();
@@ -54,6 +60,17 @@ namespace EmployeesManager.Infrastructure.Service
             employee.SetBirthDate(birthDate);
             employee.Position = position;
             employee.SetSalary(salary);
+            await _employeeRepository.UpdateAsync(employee);
+        }
+
+        public async Task UpdateEmployeeAsync(EmployeeDto EmployeeDto)
+        {
+            var employee = await _employeeRepository.GetAsync(EmployeeDto.Id);
+            employee.FirstName = EmployeeDto.FirstName;
+            employee.LastName = EmployeeDto.LastName;
+            employee.SetBirthDate(EmployeeDto.BirthDate);
+            employee.Position = EmployeeDto.Position;
+            employee.SetSalary(EmployeeDto.Salary);
             await _employeeRepository.UpdateAsync(employee);
         }
     }

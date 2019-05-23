@@ -11,8 +11,9 @@ namespace EmployeesManager.Infrastructure.IoC
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
             services.AddSingleton(AutoMapperConfig.Initalize());
-
             services.AddSingleton<IEmployeeRepository, EmployeeXmlRepository>();
+
+            services.AddScoped<IDataInitializer, DataInitializer>();
             services.AddScoped<IEmployeeService, EmployeeService>();
         }
     }

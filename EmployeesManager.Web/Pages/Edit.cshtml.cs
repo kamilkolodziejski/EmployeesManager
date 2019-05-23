@@ -46,8 +46,7 @@ namespace EmployeesManager.Web.Pages
                 return Page();
             }
 
-            await _employeeService.UpdateEmployeeAsync(EmployeeDto.Id, EmployeeDto.NIP, EmployeeDto.FirstName, EmployeeDto.LastName,
-                                                    EmployeeDto.BirthDate, EmployeeDto.Position, EmployeeDto.Salary);
+            await _employeeService.UpdateEmployeeAsync(EmployeeDto);
             
             return RedirectToPage("./Employees");
         }
