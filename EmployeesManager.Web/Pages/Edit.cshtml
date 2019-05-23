@@ -2,12 +2,12 @@
 @model EmployeesManager.Web.Pages.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj pracownika";
 }
 
-<h2>Edit</h2>
+<h2>@ViewData["Title"]</h2>
 
-<h4>EmployeeDto</h4>
+@*<h4>EmployeeDto</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -45,14 +45,14 @@
                 <span asp-validation-for="EmployeeDto.Salary" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Zapisz zmiany" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

@@ -1,14 +1,10 @@
-﻿using EmployeesManager.Infrastructure.XmlStore;
-using EmployeesManager.Infrastructure.Mappers;
-using EmployeesManager.Infrastructure.Service;
+﻿using EmployeesManager.Infrastructure.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using EmployeesManager.Web.Models;
 
 namespace EmployeesManager.Web
 {
@@ -31,17 +27,13 @@ namespace EmployeesManager.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddSingleton(AutoMapperConfig.Initalize());
+            services.ConfigureDependencyInjection();
 
-            services.AddSingleton<IEmployeeRepository, EmployeeXmlRepository>();
-            services.AddScoped<IEmployeeService, EmployeeService>();
-            //services.AddSingleton<IEmployeesStore, EmployeeXmlStore>();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddDbContext<EmployeesManagerWebContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("EmployeesManagerWebContext")));
-
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .AddRazorPagesOptions( options =>
+                    {
+                        options.Conventions.AddPageRoute("/Home","");
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

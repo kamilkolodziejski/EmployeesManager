@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EmployeesManager.Web</title>
+    <title>@ViewData["Title"] - Employees Manager</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -19,21 +19,20 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header navbar-left">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">EmployeesManager.Web</a>
+                <a asp-page="/Home" class="navbar-brand">Employees Manager - zarządzanie pracownikami</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/List">Lista pracowników</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a asp-page="/Home">Strona główna</a></li>
+                    <li><a asp-page="/Employees">Pracownicy</a></li>
+                    <li><a asp-page="/About">Autor</a></li>
                 </ul>
             </div>
         </div>

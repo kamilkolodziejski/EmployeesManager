@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EmployeesManager.Infrastructure.Dto;
-using EmployeesManager.Web.Models;
 using EmployeesManager.Infrastructure.Service;
 
 namespace EmployeesManager.Web.Pages

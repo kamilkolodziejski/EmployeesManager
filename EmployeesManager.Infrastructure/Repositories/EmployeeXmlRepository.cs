@@ -41,7 +41,11 @@ namespace EmployeesManager.Infrastructure.XmlStore
         public async Task UpdateAsync(Employee employee)
         {
             var employeeFromStore = _store.SingleOrDefault(x => x.Id == employee.Id);
-            employeeFromStore = _mapper.Map<EmployeeXmlEntity>(employee);
+            employeeFromStore.FirstName = employee.FirstName;
+            employeeFromStore.LastName = employee.LastName;
+            employeeFromStore.BirthDate = employee.BirthDate;
+            employeeFromStore.Position = employee.Position;
+            employeeFromStore.Salary = employee.Salary;
             Save();
             await Task.CompletedTask;
         }

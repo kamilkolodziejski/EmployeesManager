@@ -10,12 +10,39 @@
     <Salary>321321</Salary>
   </EmployeeXmlEntity>
   <EmployeeXmlEntity>
-    <Id>5687b686-0d2f-43f3-8987-a26760431e1d</Id>
-    <NIP>3769872708</NIP>
-    <FirstName>Andrzej</FirstName>
-    <LastName>Wajda</LastName>
-    <BirthDate>1996-04-18T00:00:00</BirthDate>
+    <Id>60114a63-53bd-4f05-b4cb-2bb48c69b0d3</Id>
+    <NIP>5349000523</NIP>
+    <FirstName>Janc</FirstName>
+    <LastName>Kowalskicw</LastName>
+    <BirthDate>1975-03-11T00:00:00</BirthDate>
+    <Position>Sprzątacz2131</Position>
+    <Salary>54324324</Salary>
+  </EmployeeXmlEntity>
+  <EmployeeXmlEntity>
+    <Id>fab15bdb-7300-4551-817a-91ae57a33b70</Id>
+    <NIP>5349000523</NIP>
+    <FirstName>Alojzy</FirstName>
+    <LastName>Idelfons</LastName>
+    <BirthDate>1991-04-16T00:00:00</BirthDate>
     <Position>Agent</Position>
-    <Salary>45567</Salary>
+    <Salary>54321</Salary>
+  </EmployeeXmlEntity>
+  <EmployeeXmlEntity>
+    <Id>b03bc11b-0d27-442b-87ee-ebb72c83ea5e</Id>
+    <NIP>5349000523</NIP>
+    <FirstName>Jan</FirstName>
+    <LastName>Kowalski</LastName>
+    <BirthDate>1975-03-11T00:00:00</BirthDate>
+    <Position>Sprzątacz</Position>
+    <Salary>54324324</Salary>
+  </EmployeeXmlEntity>
+  <EmployeeXmlEntity>
+    <Id>071f0097-b730-45c8-ab90-81e87ed7f239</Id>
+    <NIP>5349000523</NIP>
+    <FirstName>Jan</FirstName>
+    <LastName>Kowalski</LastName>
+    <BirthDate>1975-03-11T00:00:00</BirthDate>
+    <Position>Sprzątacz</Position>
+    <Salary>54324324</Salary>
   </EmployeeXmlEntity>
 </ArrayOfEmployeeXmlEntity>

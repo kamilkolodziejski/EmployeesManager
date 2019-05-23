@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using EmployeesManager.Infrastructure.Service;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EmployeesManager.Web.Pages
 {
-    public class PrivacyModel : PageModel
+    public class HomeModel : PageModel
     {
+        public HomeModel()
+        {
+        }
+
         public void OnGet()
         {
         }
