@@ -10,7 +10,7 @@ namespace EmployeesManager.Web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env) //,IConfiguration configuration, )
+        public Startup(IHostingEnvironment env) 
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -19,9 +19,6 @@ namespace EmployeesManager.Web
                 .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
-
-            //HostingEnvironment = env;
-            ////Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; private set; }
@@ -39,7 +36,7 @@ namespace EmployeesManager.Web
 
             services.ConfigureSettings(this.Configuration);
             services.ConfigureDependencyInjection();
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddRazorPagesOptions( options =>
                     {
