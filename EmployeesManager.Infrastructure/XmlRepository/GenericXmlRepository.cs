@@ -4,18 +4,21 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace EmployeesManager.Infrastructure.XmlStore
+namespace EmployeesManager.Infrastructure.XmlRepository
 {
-    public abstract class GenericXmlStore<T>
+    public abstract class GenericXmRepository<T, T1>
     {
         protected readonly string _path;
         protected HashSet<T> _store;
 
-        public GenericXmlStore(string path)
+        public GenericXmRepository(string path)
         {
             _path = path;
             Initialize();
         }
+
+        protected abstract HashSet<T> Restore(HashSet<T1> t1);
+        protected abstract HashSet<T1> Persist(HashSet<T> t);
 
         private void Initialize()
         {
@@ -23,8 +26,9 @@ namespace EmployeesManager.Infrastructure.XmlStore
             {
                 using(FileStream fileStream = new FileStream(_path, FileMode.Open))
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(HashSet<T>));                    
-                    _store = (HashSet<T>)xmlSerializer.Deserialize(fileStream);
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(HashSet<T1>));
+                    HashSet<T1> t1 = (HashSet<T1>)xmlSerializer.Deserialize(fileStream);
+                    _store = Restore(t1);
                 }
             }
             else
@@ -33,12 +37,13 @@ namespace EmployeesManager.Infrastructure.XmlStore
             }
         }
 
-        public void Save()
+        protected void Save()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(HashSet<T>));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(HashSet<T1>));
             using (TextWriter streamWriter = new StreamWriter(_path))
             {
-                xmlSerializer.Serialize(streamWriter, _store);
+                HashSet<T1> t1 = Persist(_store);
+                xmlSerializer.Serialize(streamWriter, t1);
             }
         }
     }

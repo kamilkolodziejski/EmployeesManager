@@ -35,11 +35,11 @@ namespace EmployeesManager.Web.Pages
 
             IEnumerable<EmployeeDto> employeesQuery = EmployeeDto;
             if (!String.IsNullOrEmpty(lastNameFilter))
-                employeesQuery = employeesQuery.Where(e => e.LastName.ToUpper().Contains(lastNameFilter.ToUpper()));
+                employeesQuery = employeesQuery.Where(e => !String.IsNullOrEmpty(e.LastName) && e.LastName.ToUpper().Contains(lastNameFilter.ToUpper()));
             if (!String.IsNullOrEmpty(nipFilter))
-                employeesQuery = employeesQuery.Where(e => e.NIP.ToUpper().Contains(nipFilter.ToUpper()));
+                employeesQuery = employeesQuery.Where(e => !String.IsNullOrEmpty(e.NIP) && e.NIP.ToUpper().Contains(nipFilter.ToUpper()));
             if (!String.IsNullOrEmpty(positionFilter))
-                employeesQuery = employeesQuery.Where(e => e.Position.ToUpper().Contains(positionFilter.ToUpper()));
+                employeesQuery = employeesQuery.Where(e => !String.IsNullOrEmpty(e.Position) && e.Position.ToUpper().Contains(positionFilter.ToUpper()));
 
             EmployeeDto = employeesQuery.ToList();
         }

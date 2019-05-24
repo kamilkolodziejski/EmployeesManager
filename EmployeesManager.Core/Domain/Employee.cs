@@ -1,11 +1,12 @@
-﻿using EmployeesManager.Infrastructure.IoC;
+﻿using EmployeesManager.Core.Domain;
+using EmployeesManager.Infrastructure.IoC;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace EmployeesManager.Infrastructure.XmlStore
+namespace EmployeesManager.Infrastructure.XmlRepository
 {
     public class Employee
     {
@@ -36,7 +37,7 @@ namespace EmployeesManager.Infrastructure.XmlStore
         {
             if(!ValidateNIP(nip))
             {
-                throw new ArgumentException("NIP jest niepoprawny");
+                throw new EmployeeManagerException("NIP jest niepoprawny");
             }
             NIP = nip;
         }
@@ -45,7 +46,7 @@ namespace EmployeesManager.Infrastructure.XmlStore
         {
             if(!birthDate.IsOfAge())
             {
-                throw new ArgumentException("Pracownik nie jest pełnoletni");
+                throw new EmployeeManagerException("Pracownik nie jest pełnoletni");
             }
             BirthDate = birthDate;
         }
@@ -54,7 +55,7 @@ namespace EmployeesManager.Infrastructure.XmlStore
         {
             if(salary<=0)
             {
-                throw new ArgumentException("Wynagrodzenie musi być większe od 0");
+                throw new EmployeeManagerException("Wynagrodzenie musi być większe od 0");
             }
             Salary = salary;
         }

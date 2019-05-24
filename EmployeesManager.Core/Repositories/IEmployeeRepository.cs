@@ -1,18 +1,17 @@
-﻿using EmployeesManager.Infrastructure.XmlStore;
+﻿using EmployeesManager.Infrastructure.XmlRepository;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EmployeesManager.Infrastructure.XmlStore
+namespace EmployeesManager.Infrastructure.XmlRepository
 {
     public interface IEmployeeRepository
     {
         Task<Employee> GetAsync(Guid id);
-        Task<Employee> GetAsync(string NIP);
-        Task<IEnumerable<Employee>> BrowseAsync();
+        Task<IEnumerable<Employee>> GetAllAsync();
         Task AddAsync(Employee employee);
         Task UpdateAsync(Employee employee);
-        Task RemoveAsync(Guid id);
+        Task RemoveAsync(Employee employee);
     }
 }

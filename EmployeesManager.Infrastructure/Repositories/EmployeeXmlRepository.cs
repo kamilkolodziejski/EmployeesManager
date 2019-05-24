@@ -6,37 +6,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmployeesManager.Infrastructure.XmlStore
+namespace EmployeesManager.Infrastructure.XmlRepository
 {
-    public class EmployeeXmlRepository : GenericXmlStore<EmployeeXmlEntity>, IEmployeeRepository
+    public class EmployeeXmlRepository : GenericXmRepository<Employee, EmployeeXmlEntity>, IEmployeeRepository
     {
         private readonly IMapper _mapper;
-        private readonly IOptions<XmlRepositorySettings> _settings;
         public EmployeeXmlRepository(IMapper mapper, IOptions<XmlRepositorySettings> settings) : base(settings.Value.EmployeeXmlPath)
         {
             _mapper = mapper;
-            _settings = settings;
         }
 
         public async Task AddAsync(Employee employee)
         {
-            _store.Add(_mapper.Map<EmployeeXmlEntity>(employee));
+            _store.Add(employee);
             Save();
             await Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<Employee>> BrowseAsync()
-            => await Task.FromResult(_mapper.Map<IEnumerable<Employee>>(_store));
-
-        public async Task<Employee> GetAsync(string NIP)
-            => await Task.FromResult(_mapper.Map<Employee>(_store.Where(x => x.NIP == NIP).SingleOrDefault()));
+        public async Task<IEnumerable<Employee>> GetAllAsync()
+            => await Task.FromResult(_store.ToList());
 
         public async Task<Employee> GetAsync(Guid id)
-            => await Task.FromResult(_mapper.Map<Employee>(_store.Where(x => x.Id == id).SingleOrDefault()));
+            => await Task.FromResult(_store.SingleOrDefault(x => x.Id == id));
 
-        public async Task RemoveAsync(Guid id)
+        public async Task RemoveAsync(Employee employee)
         {
-            var employee = _store.SingleOrDefault(x => x.Id == id);
             _store.Remove(employee);
             Save();
             await Task.CompletedTask;
@@ -45,13 +39,18 @@ namespace EmployeesManager.Infrastructure.XmlStore
         public async Task UpdateAsync(Employee employee)
         {
             var employeeFromStore = _store.SingleOrDefault(x => x.Id == employee.Id);
-            employeeFromStore.FirstName = employee.FirstName;
-            employeeFromStore.LastName = employee.LastName;
-            employeeFromStore.BirthDate = employee.BirthDate;
-            employeeFromStore.Position = employee.Position;
-            employeeFromStore.Salary = employee.Salary;
-            Save();
+            if(employeeFromStore != null)
+            {
+                employeeFromStore = employee;
+                Save();
+            }
             await Task.CompletedTask;
         }
+
+        protected override HashSet<EmployeeXmlEntity> Persist(HashSet<Employee> t)
+            => _mapper.Map<ISet<Employee>, HashSet<EmployeeXmlEntity>>(t);
+
+        protected override HashSet<Employee> Restore(HashSet<EmployeeXmlEntity> t1)
+            => t1.Select(x => x.GetEmployee()).ToHashSet();
     }
 }

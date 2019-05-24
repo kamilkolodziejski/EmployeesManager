@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EmployeesManager.Infrastructure.XmlStore;
+using EmployeesManager.Infrastructure.XmlRepository;
 using EmployeesManager.Infrastructure.Dto;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace EmployeesManager.Infrastructure.Mappers
            {
                cfg.CreateMap<Employee, EmployeeDto>();
                cfg.CreateMap<Employee, EmployeeXmlEntity>();
-               cfg.CreateMap<EmployeeXmlEntity, Employee>();
+               cfg.CreateMap<Employee, EmployeeXmlEntity>();
 
            }).CreateMapper();
     }

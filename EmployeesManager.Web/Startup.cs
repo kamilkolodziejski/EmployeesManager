@@ -1,4 +1,5 @@
 ﻿using EmployeesManager.Infrastructure.IoC;
+using EmployeesManager.Infrastructure.Middleware;
 using EmployeesManager.Infrastructure.Service;
 using EmployeesManager.Infrastructure.Settings;
 using Microsoft.AspNetCore.Builder;
@@ -56,8 +57,7 @@ namespace EmployeesManager.Web
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                app.UseMiddleware<ExceptionHandlerMiddleware>();
             }
 
             var settings = app.ApplicationServices.GetService<IOptions<XmlRepositorySettings>>();
@@ -65,7 +65,6 @@ namespace EmployeesManager.Web
             {
                 dataInitializer.SeedData();
             }
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using EmployeesManager.Infrastructure.XmlStore;
+using EmployeesManager.Infrastructure.XmlRepository;
 using EmployeesManager.Infrastructure.Dto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EmployeesManager.Core.Domain;
 
 namespace EmployeesManager.Infrastructure.Service
 {
@@ -18,27 +19,30 @@ namespace EmployeesManager.Infrastructure.Service
             _mapper = mapper;
         }
 
-        public async Task AddEmployeeAsync(string nip, string firstName, string lastName, DateTime birthDate, string position, int salary)
+        public async Task AddEmployeeAsync(EmployeeDto employeeDto)
         {
-            var employee = new Employee(Guid.NewGuid(), nip, firstName, lastName, birthDate, position, salary);
-            await _employeeRepository.AddAsync(employee);
-        }
+            var employee = new Employee(employeeDto.Id, employeeDto.NIP, employeeDto.FirstName, employeeDto.LastName,
+                                            employeeDto.BirthDate, employeeDto.Position, employeeDto.Salary);
 
-        public async Task AddEmployeeAsync(EmployeeDto EmployeeDto)
-        {
-            var employee = new Employee(Guid.NewGuid(), EmployeeDto.NIP, EmployeeDto.FirstName, EmployeeDto.LastName, EmployeeDto.BirthDate, EmployeeDto.Position, EmployeeDto.Salary);
             await _employeeRepository.AddAsync(employee);
         }
 
         public async Task<IEnumerable<EmployeeDto>> BrowseAsync()
         {
-            var employees = await _employeeRepository.BrowseAsync();
-            var employeesDTO = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDto>>(employees);
-            return employeesDTO;
+            var employees = await _employeeRepository.GetAllAsync();
+            var employeesDto = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDto>>(employees);
+            return employeesDto;
         }
 
         public async Task DeleteEmployeeAsync(Guid id)
-            => await _employeeRepository.RemoveAsync(id);
+        {
+            var employee = await _employeeRepository.GetAsync(id);
+            if(employee == null)
+            {
+                throw new EmployeeManagerException("Pracownik nie istnieje");
+            }
+            await _employeeRepository.RemoveAsync(employee);
+        }
 
         public async Task<EmployeeDto> GetByIdAsync(Guid id)
         {
@@ -46,31 +50,19 @@ namespace EmployeesManager.Infrastructure.Service
             return _mapper.Map<Employee, EmployeeDto>(employee);
         }
 
-        public async Task<EmployeeDto> GetByNIP(string nip)
+        public async Task UpdateEmployeeAsync(EmployeeDto employeeDto)
         {
-            var employee = await _employeeRepository.GetAsync(nip);
-            return _mapper.Map<Employee, EmployeeDto>(employee);
-        }
-
-        public async Task UpdateEmployeeAsync(Guid id, string nip, string firstName, string lastName, DateTime birthDate, string position, int salary)
-        {
-            var employee = await _employeeRepository.GetAsync(id);
-            employee.FirstName = firstName;
-            employee.LastName = lastName;
-            employee.SetBirthDate(birthDate);
-            employee.Position = position;
-            employee.SetSalary(salary);
-            await _employeeRepository.UpdateAsync(employee);
-        }
-
-        public async Task UpdateEmployeeAsync(EmployeeDto EmployeeDto)
-        {
-            var employee = await _employeeRepository.GetAsync(EmployeeDto.Id);
-            employee.FirstName = EmployeeDto.FirstName;
-            employee.LastName = EmployeeDto.LastName;
-            employee.SetBirthDate(EmployeeDto.BirthDate);
-            employee.Position = EmployeeDto.Position;
-            employee.SetSalary(EmployeeDto.Salary);
+            var employee = await _employeeRepository.GetAsync(employeeDto.Id);
+            if(employee == null)
+            {
+                throw new EmployeeManagerException("Pracownik nie istnieje");
+            }
+            employee.SetNIP(employeeDto.NIP);
+            employee.FirstName = employeeDto.FirstName;
+            employee.LastName = employeeDto.LastName;
+            employee.SetBirthDate(employeeDto.BirthDate);
+            employee.Position = employeeDto.Position;
+            employee.SetSalary(employeeDto.Salary);
             await _employeeRepository.UpdateAsync(employee);
         }
     }
