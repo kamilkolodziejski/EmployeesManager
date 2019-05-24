@@ -6,7 +6,7 @@
 
 ## 1. Description
 
-Web Application for employee managers. Simple CRUD application, user can add new employee, edit and delete existing and filter employees by last name, nip and position.
+Web Application for employee managers. Simple CRUD application, user can add new employee, edit and delete existing employees and filter employees by last name, nip and position.
 
 Application built with Razor Pages and ASP.NET Core. As persistant store are used XML files.
 
@@ -18,7 +18,7 @@ Application built with Razor Pages and ASP.NET Core. As persistant store are use
 
 ## 3. How to use?
 
-1. You need install .NET Core SDK min. 2.1
+1. To run the application is required installed .NET Core SDK at least version 2.1
 2. Download/clone this repository, e.g. below command:
     ```bash
     git clone git@github.com:kamilkolodziejski/EmployeesManager.git
@@ -38,21 +38,18 @@ Application built with Razor Pages and ASP.NET Core. As persistant store are use
     ```
     
     
-5. Application will start and will be available from those addresses, depends from protocol: http://localhost:5000 and https://localhost:5001 .
+5. Application will start and will be available from addresses defined in file lauchSettings.json, in this example: http://localhost:5000, https://localhost:5001
 
 
 
 
 ## 4. Configuration
 
-#### By editing configuration files, you can change some application's settings
-
-
 
   * EmployeesManager.Web/Properties/lauchSettings.json
   
-Here we are some runtime profiles. Until you run application from command line, you should be interested second profile - EmployeesManager.Web, where you can change application endpoints and environment.
+In property ASPNETCORE_ENVIRONMENT is defined environment using to configure application behaviors e.g. is be use DevelopmentExceptionPage or custom Middleware Exception Handler.
 
   * EmployeesManager.Web/appsettings.json, EmployeesManager.Web/appsettings.Development.json
   
-In depends which environment you have set, you should open corresponding file. In this file are settings about logging, allowed hosts and section about repository settings. Currently, they are XML files. Here you can set path to file for store employees data and you can choose whether the application will generate sample data.
+In depends which environment you have set, you should open corresponding file. In this file are settings about logging, allowed hosts and section about repository settings. Currently, they are XML files. Here you can set path to file stored employees data and choose whether the application will generate sample data.
