@@ -2,11 +2,15 @@
  Employees Manager
 ======
 
+
+
 ## 1. Description
 
 Web Application for employee managers. Simple CRUD application, user can add new employee, edit and delete existing and filter employees by last name, nip and position.
 
 Application built with Razor Pages and ASP.NET Core. As persistant store are used XML files.
+
+
 
 ## 2. Screenshots
 ![alt screenshot](https://github.com/kamilkolodziejski/EmployeesManager/blob/master/start_page.jpg "Start page")
@@ -23,7 +27,7 @@ Application built with Razor Pages and ASP.NET Core. As persistant store are use
 
     ```bash
     ./run.sh
-    ```
+    ```                     
     
 4. Or go to terminal, change directory to EmployeesManager.Web/ and enter below commands:
 
@@ -35,6 +39,8 @@ Application built with Razor Pages and ASP.NET Core. As persistant store are use
     
     
 5. Application will start and will be available from those addresses, depends from protocol: http://localhost:5000 and https://localhost:5001 .
+
+
 
 
 ## 4. Configuration
