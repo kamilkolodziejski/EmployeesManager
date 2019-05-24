@@ -14,7 +14,6 @@ namespace EmployeesManager.Infrastructure.Mappers
            {
                cfg.CreateMap<Employee, EmployeeDto>();
                cfg.CreateMap<Employee, EmployeeXmlEntity>();
-               cfg.CreateMap<Employee, EmployeeXmlEntity>();
 
            }).CreateMapper();
     }
