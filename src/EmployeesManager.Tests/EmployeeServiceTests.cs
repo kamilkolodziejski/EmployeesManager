@@ -15,12 +15,9 @@ namespace EmployeesManager.Tests
         [Fact]
         public async Task when_adding_new_employee_should_invoke_user_repository_add_async()
         {
-            var employee = new Employee(Guid.NewGuid(), "5720722356", "Jan", "Kowalski", new DateTime(1990, 1, 1), "Kierownik", 1500);
-            var employeeDto = new EmployeeDto(employee.Id, employee.NIP, employee.FirstName, employee.LastName,
-                                            employee.BirthDate, employee.Position, employee.Salary);
+            var employeeDto = new EmployeeDto(Guid.NewGuid(), "5720722356", "Jan", "Kowalski", new DateTime(1990, 1, 1), "Kierownik", 1500);
 
             var employeeRepositoryMock = new Mock<IEmployeeRepository>();
-            //employeeRepositoryMock.Setup(x => x.AddAsync(employee));
             var mapperMock = new Mock<IMapper>();
 
 
@@ -37,10 +34,7 @@ namespace EmployeesManager.Tests
             var employeeRepositoryMock = new Mock<IEmployeeRepository>();
             employeeRepositoryMock.Setup(x => x.GetAsync(employee.Id))
                                         .ReturnsAsync(employee);
-            //employeeRepositoryMock.Setup(x => x.UpdateAsync(It.IsAny<Employee>()));
             var mapperMock = new Mock<IMapper>();
-            //mapperMock.Setup(x => x.Map<Employee, EmployeeXmlEntity>(It.IsAny<Employee>()))
-            //                    .Returns(It.IsAny<EmployeeXmlEntity>());
 
             IEmployeeService employeeService = new EmployeeService(employeeRepositoryMock.Object, mapperMock.Object);
             var employeeDto = new EmployeeDto(employee.Id, employee.NIP, employee.FirstName, employee.LastName, 

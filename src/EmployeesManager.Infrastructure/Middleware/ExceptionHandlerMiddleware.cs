@@ -25,7 +25,6 @@ namespace EmployeesManager.Infrastructure.Middleware
             }
             catch (Exception ex)
             {
-                context.Items["OrginalPath"] = context.Request.Path;
                 context.Request.Path = "/Error";
 
                 var exceptionType = ex.GetType();
