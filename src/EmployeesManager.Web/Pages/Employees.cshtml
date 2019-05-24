@@ -1,0 +1,102 @@
+﻿@page
+@model EmployeesManager.Web.Pages.EmployeesModel
+
+@{
+    ViewData["Title"] = "Lista pracowników";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-page="Create">Dodaj pracownika</a>
+</p>
+<form asp-page="./Employees" method="get">
+    <table class="table center-block table-condensed">
+        <thead class="table-responsive">
+            <tr>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    NIP
+                </th>
+                <th>
+                    Stanowisko
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" class="text-center " name="lastNameFilter" value="@Model.NameCurrentFilter" />
+                </td>
+                <td>
+                    <input type="text" class="text-center" name="nipFilter" value="@Model.NipCurrentFilter" />
+                </td>
+                <td>
+                    <input type="text" class="text-center" name="positionFilter" value="@Model.PositionCurrentFilter" />
+                </td>
+                <td>
+                    <input type="submit" value="Szukaj" class="btn btn-default btn-sm " /> 
+                    <a asp-page="./Employees">Resetuj</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    NIP
+                </th>
+                <th>
+                    Imie
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Data urodzenia
+                </th>
+                <th>
+                    Stanowisko
+                </th>
+                <th>
+                    Wynagrodzenie
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.EmployeeDto)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salary)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,57 @@
+﻿@page
+@model EmployeesManager.Web.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Usuń pracownika";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<h4>Jesteś pewien, że chcesz usunąć tego pracownika?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDto.NIP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDto.NIP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDto.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDto.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDto.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDto.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDto.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDto.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDto.Position)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDto.Position)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDto.Salary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeDto.Salary)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="EmployeeDto.Id" />
+        <input type="submit" value="Usuń" class="btn btn-default" /> |
+        <a asp-page="./Employees">Powrót do listy</a>
+    </form>
+</div>

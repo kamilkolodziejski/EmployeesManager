@@ -1,0 +1,54 @@
+﻿@page
+@model EmployeesManager.Web.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Szczegóły pracownika";
+}
+
+    <h2>@ViewData["Title"]</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeDto.NIP)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeDto.NIP)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeDto.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeDto.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeDto.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeDto.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeDto.BirthDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeDto.BirthDate.Date)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeDto.Position)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeDto.Position)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeDto.Salary)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeDto.Salary)
+            </dd>
+        </dl>
+        <a asp-page="./Edit" asp-route-id="@Model.EmployeeDto.Id" class="btn btn-default">Edytuj pracownika</a> 
+    </div>
+<div>
+    <a asp-page="./Employees">Powrót do listy</a>
+</div>
